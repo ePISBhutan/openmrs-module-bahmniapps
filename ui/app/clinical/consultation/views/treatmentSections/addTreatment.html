@@ -77,7 +77,7 @@
                             </div>
                             <article class="form-field ">
                                 <div class="field-attribute">
-                                    <label class=" unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_UNITS') }} </label>
+                                    <label class=" unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_DOSE_UNITS') }} </label>
                                 </div>
                                 <div class="field-value">
                                     <select id="uniform-dose-unit" class="form-field freq-choose-units" ng-model="treatment.uniformDosingType.doseUnits"
@@ -103,17 +103,21 @@
                                 </select>
                             </div>
                         </article>
-                        <article class="form-field clearfix">
-                            <div class="field-attribute">
-                                <label>{{ ::treatmentConfig.translate('route', 'MEDICATION_LABEL_ROUTE') }} </label>
-                            </div>
-                            <div class="field-value">
-                                <select id="route" class="route" ng-model="treatment.route"
-                                        ng-options="item.name as item.name for item in treatmentConfig.getRoutes()">
-                                    <option value="">{{ ::treatmentConfig.translate('routePlaceHolder', 'MEDICATION_ROUTE_PLACEHOLDER') }} </option>
-                                </select>
-                            </div>
-                        </article>
+                        <div ng-if="!treatmentConfig.isHiddenField('route')">
+                            <article class="form-field clearfix">
+                                <div class="field-attribute">
+                                    <label>{{ ::treatmentConfig.translate('route', 'MEDICATION_LABEL_ROUTE') }} </label>
+                                </div>
+                                <div class="field-value">
+                                    <select id="route" class="route" ng-model="treatment.route"
+                                            ng-options="item.name as item.name for item in treatmentConfig.getRoutes()">
+                                        <option value="">{{ ::treatmentConfig.translate('routePlaceHolder',
+                                            'MEDICATION_ROUTE_PLACEHOLDER') }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                     <div class="frequency-widget variable-frequency " ng-if="!treatment.isUniformFrequency">
                         <article class="form-field ">
@@ -159,31 +163,35 @@
                         </article>
                     </div>
                 </div>
-                <article class="form-field">
-                    <div class="field-attribute">
-                        <label class="start-date-label ">{{ ::treatmentConfig.translate('startDate', 'MEDICATION_LABEL_START_DATE') }} </label>
-                    </div>
-                    <div class="field-value">
-                        <input id="start-date" date-converter class="start-date " type="date"
-                               ng-model="treatment.effectiveStartDate" required>
-                    </div>
-                </article>
 
-                <div  ng-if="!treatmentConfig.isHiddenField('duration')">
-                    <article class="form-field ">
+                <div ng-if="!treatmentConfig.isHiddenField('startDate')">
+                    <article class="form-field">
                         <div class="field-attribute">
-                            <label class="duration-label">{{ ::treatmentConfig.translate('duration', 'MEDICATION_LABEL_DURATION') }} </label>
+                            <label class="start-date-label ">{{ ::treatmentConfig.translate('startDate',
+                                'MEDICATION_LABEL_START_DATE') }} </label>
                         </div>
                         <div class="field-value">
-                            <input id="duration" class=" duration"
-                                   type="number" min="1"
-                                   ng-model="treatment.duration" ng-change="treatment.calculateDurationInDays()"
-                                   ng-required="treatment.isDurationRequired" ng-pattern="/^[0-9]+$/"/>
+                            <input id="start-date" date-converter class="start-date " type="date"
+                                   ng-model="treatment.effectiveStartDate" required>
                         </div>
                     </article>
-                    <article class="form-field ">
+                </div>
+
+                <article class="form-field ">
+                    <div class="field-attribute">
+                        <label class="duration-label">{{ ::treatmentConfig.translate('duration','MEDICATION_LABEL_DURATION') }} </label>
+                    </div>
+                    <div class="field-value">
+                        <input id="duration" class=" duration"
+                               type="number" min="1"
+                               ng-model="treatment.duration" ng-change="treatment.calculateDurationInDays()"
+                               ng-required="treatment.isDurationRequired" ng-pattern="/^[0-9]+$/"/>
+                    </div>
+                </article>
+                <div  ng-if="!treatmentConfig.isHiddenField('durationUnits')">
+                <article class="form-field ">
                         <div class="field-attribute">
-                            <label class=" unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_UNITS') }} </label>
+                            <label class=" unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_DURATION_UNITS') }} </label>
                         </div>
                         <div class="field-value">
                             <select  ng-if="!treatmentConfig.isHiddenField('durationUnits')" id="duration-unit"
@@ -208,7 +216,7 @@
                         </article>
                         <article class="form-field fl">
                             <div class="field-attribute">
-                                <label class="fl unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_UNITS') }} </label>
+                                <label class="fl unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_QUANTITY_UNITS') }} </label>
                             </div>
                             <div class="field-value">
                                 <select ng-if="!treatmentConfig.isHiddenField('quantityUnits')" id="total-quantity-unit"
@@ -297,7 +305,6 @@
                            ng-model-options="{debounce:200}"
                            ng-change="getFilteredOrderSets(newOrderSet.searchQuery)()" ng-disabled="isSearchDisabled"/>
                 </div>
-
                 <div class="field-attribute">
                     <label>Start Date</label>
                 </div>
