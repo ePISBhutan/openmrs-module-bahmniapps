@@ -1,13 +1,14 @@
 <li ng-class="::{'is-text': observation.type == 'Text', 'has-child' : observation.groupMembers.length > 0 ,'video-concept':observation.isVideoConcept()}" >
     <div ng-class="::{'is-abnormal': (observation.abnormal ==  true)}" class="tree-list-item clearfix" bm-gallery patient="patient">
         <span ng-if="::(!observation.isImageConcept() || (observation.isImageConcept() && !print))" class="testUnderPanel left">
-            <label>{{::(observation.concept.shortName || observation.concept.name)}}</label>
+            <label>{{::(observation.concept.shortName || observation.concept.name)}} </label>
             <hint concept-details="::{
             lowNormal:observation.lowNormal||observation.concept.lowNormal,
             hiNormal:observation.hiNormal||observation.concept.hiNormal,
             }"/>
             <a href="{{'/document_images/' + observation.value}}" download ng-if="observation.isVideoConcept()" class="button btn fr btn-download"><i class="fa fa-download" aria-hidden="true"></i></a>
         </span>
+        <span class="obsGroupTime right"  ng-show="showTimeForObsGroup">{{::dateString(observation)}}</span>
         <span ng-class="::{
                        'text-only': (observation.concept.dataType ==='Text' && print),
                        'value-text-only': !(observation.concept.dataType ==='Text' && print)
@@ -56,7 +57,7 @@
     <div>
         <ul ng-if="::(!observation.isFormElement() && !print)" class="hidden-print">
             <show-observation  show-details-button="::showDetailsButton" ng-if="::!observation.isFormElement()" ng-repeat="member in ::observation.groupMembers"
-                              observation="::member" patient="::patient" show-date="::showDate" show-time="::showTime" ng-class="{'video-concept-show': member.isVideoConcept()}"></show-observation>
+                              observation="::member" patient="::patient" show-date="::showDate" show-time="::showTime" ng-class="{'video-concept-show': member.isVideoConcept()}" config="::config"></show-observation>
         </ul>
     </div>
     <ul ng-if="::(!observation.isFormElement() && print)" class="visible-print">
