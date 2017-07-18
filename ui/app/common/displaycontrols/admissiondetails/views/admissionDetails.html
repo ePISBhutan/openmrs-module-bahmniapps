@@ -15,7 +15,7 @@
                     <span class="disposition-state">Admission Date</span>
                 </td>
                 <td class="value" ng-if="::visitSummary.admissionDetails">
-                    {{::visitSummary.admissionDetails.date | bahmniDate}}
+                    {{::visitSummary.admissionDetails.date | bahmniDateTime}}
                 </td>
                 <td ng-if="showDetailsButton(visitSummary.admissionDetails)">
                     <button class="toggle fr"
@@ -38,7 +38,7 @@
                     <span class="disposition-state">Discharge Date</span>
                 </td>
                 <td class="value">
-                    {{::visitSummary.dischargeDetails.date| bahmniDate}}
+                    {{::visitSummary.dischargeDetails.date| bahmniDateTime}}
                 </td>
                 <td ng-if="showDetailsButton(visitSummary.dischargeDetails)">
                     <button class="toggle fr"
