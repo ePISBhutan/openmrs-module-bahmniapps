@@ -9,6 +9,15 @@ angular.module('bahmni.common.obs')
 
             $scope.print = $rootScope.isBeingPrinted || false;
 
+            function hasGroupMember () {
+                return $scope.observation.groupMembers && $scope.observation.groupMembers.length > 0;
+            }
+            function shouldShowTime () {
+                return $scope.observation && $scope.observation.conceptConfig && hasGroupMember() && $scope.config.showTimeForObsGroup;
+            }
+
+            $scope.showTimeForObsGroup = shouldShowTime() ? $scope.observation.conceptConfig.allowAddMore : false;
+
             $scope.dateString = function (observation) {
                 var filterName;
                 if ($scope.showDate && $scope.showTime) {
@@ -28,7 +37,8 @@ angular.module('bahmni.common.obs')
                 patient: "=",
                 showDate: "=?",
                 showTime: "=?",
-                showDetailsButton: "=?"
+                showDetailsButton: "=?",
+                config: "=?"
             },
             controller: controller,
             template: '<ng-include src="\'../common/obs/views/showObservation.html\'" />'

@@ -7,6 +7,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                 $scope.print = $rootScope.isBeingPrinted || false;
 
                 $scope.showGroupDateTime = $scope.config.showGroupDateTime !== false;
+                $scope.showTimeForObsGroup = $scope.config.showTimeForObsGroup !== false;
 
                 var mapObservation = function (observations) {
                     var conceptsConfig = appService.getAppDescriptor().getConfigValue("conceptSetUI") || {};
