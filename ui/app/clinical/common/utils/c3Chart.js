@@ -20,12 +20,12 @@ Bahmni.Graph.c3Chart = function () {
         if (config.displayForAge()) {
             return Bahmni.Common.Util.AgeUtil.monthsToAgeString(value);
         } else if (config.displayForObservationDateTime()) {
-            return dateUtil.formatDateWithoutTime(value);
+            var date = new Date(value);
+            return dateUtil.formatDateWithoutTime(value) + ' ' + (date.getHours() % 12).toString() + ':' + date.getMinutes().toString() + (date.getHours() / 12 === 0 ? ' am' : ' pm');
         } else {
             return d3.round(value, 2);
         }
     };
-
     var createXAxisConfig = function (config) {
         return {
             label: {
