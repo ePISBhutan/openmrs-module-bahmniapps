@@ -39,6 +39,7 @@
                     "Document",
                     "Follow-up Condition"
                 ],
+                "showTimeForObsGroup": true,`
                 "showDetailsButton": true
             }
         },
