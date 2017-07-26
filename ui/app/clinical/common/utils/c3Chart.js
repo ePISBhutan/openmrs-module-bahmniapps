@@ -20,8 +20,7 @@ Bahmni.Graph.c3Chart = function () {
         if (config.displayForAge()) {
             return Bahmni.Common.Util.AgeUtil.monthsToAgeString(value);
         } else if (config.displayForObservationDateTime()) {
-            var date = new Date(value);
-            return dateUtil.formatDateWithoutTime(value) + ' ' + (date.getHours() % 12).toString() + ':' + date.getMinutes().toString() + (date.getHours() / 12 === 0 ? ' am' : ' pm');
+            return dateUtil.formatDateWithTime(value);
         } else {
             return d3.round(value, 2);
         }
