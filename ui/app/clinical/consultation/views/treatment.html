@@ -1,5 +1,12 @@
-
 <div class="treatment-page treatment-page-container order-list clearfix">
+    <section class="block observation dashboard-section treatment-section-notes">
+        <ul bm-gallery access-impression="true">
+            <bahmni-observation patient="::patient" visit-uuid="{{::visitUuid}}"
+                                config="::sectionForNotes.config"
+                                section-title="::sectionForNotes.treatmentNoteTitle"
+                                class="section-title"></bahmni-observation>
+        </ul>
+    </section>
     <div class="dashboard-section-wrapper clearfix">
         <section class="treatment-section-left fl">
             <div ui-view="addTreatment"></div>
@@ -13,3 +20,4 @@
         </section>
     </div>
 </div>
+

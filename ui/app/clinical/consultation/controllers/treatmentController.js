@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('TreatmentController', ['$scope', 'clinicalAppConfigService', 'treatmentConfig', '$stateParams',
-        function ($scope, clinicalAppConfigService, treatmentConfig, $stateParams) {
+    .controller('TreatmentController', ['$scope', 'clinicalAppConfigService', 'treatmentConfig', '$stateParams', '$rootScope',
+        function ($scope, clinicalAppConfigService, treatmentConfig, $stateParams, $rootScope) {
             var init = function () {
                 var drugOrderHistoryConfig = treatmentConfig.drugOrderHistoryConfig || {};
                 $scope.drugOrderHistoryView = drugOrderHistoryConfig.view || 'default';
                 $scope.tabConfigName = $stateParams.tabConfigName || 'default';
+                console.log($rootScope._openVisit);
+                $scope.visitUuid = $rootScope._openVisit.uuid;
+                $scope.sectionForNotes = {
+                    "type": "observation",
+                    "treatmentNoteTitle": "Treatment Notes",
+                    "config": {
+                        "conceptNames": [
+                            "Consultation Note"
+                        ]
+                    }
+                };
 
                 var initializeTreatments = function () {
                     $scope.consultation.newlyAddedTabTreatments = $scope.consultation.newlyAddedTabTreatments || {};
