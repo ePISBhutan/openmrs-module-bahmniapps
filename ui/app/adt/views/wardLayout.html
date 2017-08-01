@@ -20,7 +20,7 @@
                 <li class="col" ng-click="fetchBedInfo(cell, $parent.$index, $index)"
                     ng-class="{occupied: !cell.empty && !cell.available, available: !cell.empty && cell.available,
                     empty: cell.empty, currentPatient : highlightCurrentPatient(cell) }"
-                    ng-repeat="cell in bed" bed-assignment-dialog ng-show="!cell.empty">
+                    ng-repeat="cell in bed" bed-assignment-dialog>
                     <span class="bed-number" ng-show="!cell.empty && cell.bed.bedNumber">{{cell.bed.bedNumber}}</span>
                     <span class="bed-type" ng-show="!cell.empty && cell.bed.bedType">{{cell.bed.bedType}}</span>
                 </li>
