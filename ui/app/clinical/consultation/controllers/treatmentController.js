@@ -15,7 +15,9 @@ angular.module('bahmni.clinical')
                     "config": {
                         "conceptNames": [
                             "Consultation Note"
-                        ]
+                        ],
+                        "showDetailsButton": true,
+                        "showGroupDateTime": true
                     }
                 };
 
