@@ -71,6 +71,11 @@
             })) {
                 return 'stopped';
             }
+            if (_.every(activeDrugOrders, function (order) {
+                return order.isStopDate(date);
+            })) {
+                return 'inactive';
+            }
             return 'active';
         },
 

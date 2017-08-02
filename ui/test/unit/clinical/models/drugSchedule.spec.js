@@ -186,7 +186,7 @@ describe("DrugSchedule", function () {
 
                 expect(drug.getStatusOnDate(DateUtil.parse('2014-04-15'))).toBe('active');
                 expect(drug.getStatusOnDate(DateUtil.parse('2014-04-14'))).toBe('active');
-                expect(drug.getStatusOnDate(DateUtil.parse('2014-04-16'))).toBe('active');
+                expect(drug.getStatusOnDate(DateUtil.parse('2014-04-16'))).toBe('inactive');
             });
         });
     });
